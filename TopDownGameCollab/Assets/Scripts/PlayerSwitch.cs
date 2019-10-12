@@ -33,6 +33,6 @@ public class PlayerSwitch : MonoBehaviour
         }
         Vector3 pos = players[playerIndex].transform.position;
         pos.z = transform.position.z;
-        transform.position = Vector3.Lerp(transform.position, pos, 3.0f);
+        transform.position = Vector3.Lerp(transform.position, pos,5.0f*Time.deltaTime);
     }
 }
