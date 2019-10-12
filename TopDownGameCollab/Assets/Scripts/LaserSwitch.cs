@@ -6,25 +6,33 @@ public class LaserSwitch : MonoBehaviour
 {
     [Tooltip("Drag the laser object from the hierarchy that this switch will destroy")]
     public GameObject lasers;
-    // Start is called before the first frame update
-    void Start()
+    float lastAxis;
+    [Tooltip("What sprite do you want this to have when the lasers are active?")]
+    public Sprite activeSprite;
+    [Tooltip("What sprite do you want this to have when the lasers are deactivated?")]
+    public Sprite deactivatedSprite;
+    private void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GetComponent<SpriteRenderer>().sprite = activeSprite;
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Flags>() != null)
         {
-            if (collision.gameObject.GetComponent<Flags>().ability.ToString().Equals("FlipSwitches") && Input.GetAxis("Ability").Equals(1))
+            if (collision.gameObject.GetComponent<Flags>().ability.ToString().Equals("FlipSwitches") && Input.GetAxis("Ability").Equals(1) && lastAxis.Equals(0))
             {
-                lasers.active = false;
+                lasers.SetActive(!lasers.activeSelf);
+                if(GetComponent<SpriteRenderer>().sprite == activeSprite)
+                {
+                    GetComponent<SpriteRenderer>().sprite = deactivatedSprite;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().sprite = activeSprite;
+                }
             }
         }
+        lastAxis = Input.GetAxis("Ability");
     }
+    
 }

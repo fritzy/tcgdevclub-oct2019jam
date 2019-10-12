@@ -1840,8 +1840,8 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &1509392895
 SpriteRenderer:
@@ -2011,6 +2011,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lasers: {fileID: 969313559}
+  activeSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  deactivatedSprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!58 &1960520489
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2142,8 +2144,8 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &2078724691
 SpriteRenderer:
