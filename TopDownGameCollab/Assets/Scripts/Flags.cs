@@ -6,7 +6,8 @@ public class Flags : MonoBehaviour
 {
     [System.Serializable]
     public enum Ability { None, FlipSwitches, StandOnSwitches, Jump, DestroyObjects };
-    public Ability ability;
+    public Ability[] abilities;
+    
     // Start is called before the first frame update
     void Start()
     {

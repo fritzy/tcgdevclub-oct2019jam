@@ -19,7 +19,7 @@ public class LaserSwitch : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Flags>() != null)
         {
-            if (collision.gameObject.GetComponent<Flags>().ability.ToString().Equals("FlipSwitches") && Input.GetAxis("Ability").Equals(1) && lastAxis.Equals(0))
+            if (CheckAbility(collision.gameObject, "FlipSwitches") && Input.GetAxis("Ability").Equals(1) && lastAxis.Equals(0))
             {
                 lasers.SetActive(!lasers.activeSelf);
                 if(GetComponent<SpriteRenderer>().sprite == activeSprite)
@@ -33,6 +33,18 @@ public class LaserSwitch : MonoBehaviour
             }
         }
         lastAxis = Input.GetAxis("Ability");
+    }
+    public bool CheckAbility(GameObject obj, string ability)
+    {
+        
+        for(int i = 0; i < obj.GetComponent<Flags>().abilities.Length; i++)
+        {
+            if (obj.GetComponent<Flags>().abilities[i].ToString().Equals(ability))
+            {
+                return true;
+            }
+        }
+        return false;
     }
     
 }

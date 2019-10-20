@@ -22,7 +22,7 @@ public class PlayerSwitch : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -33,10 +33,15 @@ public class PlayerSwitch : MonoBehaviour
         }
         Vector3 pos = players[playerIndex].transform.position;
         pos.z = transform.position.z;
-        transform.position = Vector3.Lerp(transform.position, pos,5.0f*Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, pos,50.0f*Time.deltaTime);
     }
     public void AddPlayer(GameObject player)
     {
         players.Add(player);
+        players[playerIndex].GetComponent<PlayerMove>().DisableMovement();
+        playerIndex = players.Count - 1;
+        Vector3 pos = players[playerIndex].transform.position;
+        pos.z = transform.position.z;
+        transform.position = Vector3.Lerp(transform.position, pos, 5.0f * Time.deltaTime);
     }
 }
