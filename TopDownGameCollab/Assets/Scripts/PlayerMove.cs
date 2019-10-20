@@ -24,6 +24,7 @@ public class PlayerMove : MonoBehaviour
         float y = Input.GetAxis("Vertical");
         transform.Rotate(new Vector3(0, 0, -x * rotateSpeed));
         GetComponent<Rigidbody2D>().velocity = y * transform.up * moveSpeed;
+        GetComponent<Animator>().SetBool("move", y != 0);
 
     }
     public void EnableMovement()
