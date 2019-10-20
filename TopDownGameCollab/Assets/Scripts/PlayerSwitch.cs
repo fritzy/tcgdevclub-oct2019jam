@@ -44,4 +44,8 @@ public class PlayerSwitch : MonoBehaviour
         pos.z = transform.position.z;
         transform.position = Vector3.Lerp(transform.position, pos, 5.0f * Time.deltaTime);
     }
+    public GameObject CurrentPlayer()
+    {
+        return players[playerIndex];
+    }
 }

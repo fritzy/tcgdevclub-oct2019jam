@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 5598409082717706075}
   - component: {fileID: 5598409082717706079}
   - component: {fileID: 6783644753218810705}
-  m_Layer: 0
-  m_Name: Player
+  m_Layer: 9
+  m_Name: Human
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc452fec3d96f2409e9386aa0eb356e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: 0
+  abilities: 
 --- !u!61 &6783644753218810705
 BoxCollider2D:
   m_ObjectHideFlags: 0
