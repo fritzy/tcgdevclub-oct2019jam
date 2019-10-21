@@ -17,7 +17,6 @@ public class ActivatePet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("foo");
         if (collision.gameObject.tag.Equals("Player") && !GetComponent<PlayerMove>().enabled)
         {
             GetComponent<PlayerMove>().enabled = true;

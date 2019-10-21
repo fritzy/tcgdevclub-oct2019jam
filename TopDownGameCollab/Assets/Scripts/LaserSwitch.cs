@@ -11,6 +11,8 @@ public class LaserSwitch : MonoBehaviour
     public Sprite activeSprite;
     [Tooltip("What sprite do you want this to have when the lasers are deactivated?")]
     public Sprite deactivatedSprite;
+    [Tooltip("Is this a switch you stand on?")]
+    public bool standSwitch = false;
     private void Start()
     {
         GetComponent<SpriteRenderer>().sprite = activeSprite;
@@ -19,7 +21,7 @@ public class LaserSwitch : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Flags>() != null)
         {
-            if (CheckAbility(collision.gameObject, "FlipSwitches") && Input.GetAxis("Ability").Equals(1) && lastAxis.Equals(0))
+            if (!standSwitch && CheckAbility(collision.gameObject, "FlipSwitches") && Input.GetAxis("Ability").Equals(1) && lastAxis.Equals(0))
             {
                 lasers.SetActive(!lasers.activeSelf);
                 if(GetComponent<SpriteRenderer>().sprite == activeSprite)
@@ -31,8 +33,24 @@ public class LaserSwitch : MonoBehaviour
                     GetComponent<SpriteRenderer>().sprite = activeSprite;
                 }
             }
+            if(standSwitch && CheckAbility(collision.gameObject, "StandOnSwitches"))
+            {
+                lasers.SetActive(false);
+                GetComponent<SpriteRenderer>().sprite = deactivatedSprite;
+            }
         }
         lastAxis = Input.GetAxis("Ability");
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Flags>() != null)
+        {
+            if (standSwitch && CheckAbility(collision.gameObject, "StandOnSwitches"))
+            {
+                lasers.SetActive(true);
+                GetComponent<SpriteRenderer>().sprite = activeSprite;
+            }
+        }
     }
     public bool CheckAbility(GameObject obj, string ability)
     {
